@@ -29,7 +29,7 @@ The solution for this problem will take two approaches:
 As both classification and regression-based approaches are going to be tested, there is going to be one metric for each type of problem.
 
 **For classification-based models**: The evaluation metric is the F1-Score as it balances the precision and recall trade-off. This is especially relevant in cases where the target variable is imbalanced, such as in this project (Out of a total 1,503,424 ads, 1,321,411 ads or 88%, have **_deal_probability_** lower than 0.5, while 182,013 ads or 12%, have **_deal_probability_** equal or higher than 0.5). This is why the F1-Score was selected as the metric for Supervised Classification in this project: the F1-Score represents a harmonic mean between precision and recall and will be closer to the lowest value between the two. The equation is given by:  
-![f1_score](https://github.com/MARALB83/mahcine_learning_capstone_project/tree/master/images/f1_Score.png)   
+![f1_score](https://github.com/MARALB83/mahcine_learning_capstone_project/tree/master/images/f1_Score.png?raw=true)   
 Source: https://en.wikipedia.org/wiki/F1_score
 
 **For regression-based models**: The evaluation metric is the root mean squared error (RMSE) which is a quantitative way to express the average deviation of the predicted **_deal_probability_** from the actual value. The equation is given by:  
