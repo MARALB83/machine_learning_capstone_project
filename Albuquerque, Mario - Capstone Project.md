@@ -33,7 +33,7 @@ As both classification and regression-based approaches are going to be tested, t
 Source: https://en.wikipedia.org/wiki/F1_score
 
 **For regression-based models**: The evaluation metric is the root mean squared error (RMSE) which is a quantitative way to express the average deviation of the predicted **_deal_probability_** from the actual value. The equation is given by:  
-![rmse]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/rmse.png?raw=true)  
+![rmse](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/rmse.png?raw=true)  
 Source: https://www.kaggle.com/c/avito-demand-prediction#evaluation
 
 ## **II. Analysis**
@@ -43,7 +43,7 @@ Source: https://www.kaggle.com/c/avito-demand-prediction#evaluation
 The composition of the data is as follows:
 
 * **_train.csv_**: Contains 1,503,424 ads with the following columns:  
-![column_desc]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/columns_desc.png?raw=true)  
+![column_desc](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/columns_desc.png?raw=true)  
 Source: https://www.kaggle.com/c/avito-demand-prediction/data
 
 The approach taken for this capstone project is to further divide the **_train.csv_** file into train and testing subsets. Although Avito provides additional records assigned to the testing subset in the Kaggle challenge, they do not have the dependent variable (**_deal_probability_**) that would make it possible to evaluate machine learning models. The Kaggle challenge sponsor holds back the **_deal_probability_** column from the testing group so that it remains a competitive and truly out-of-sample exercise.
@@ -53,7 +53,7 @@ The approach taken for this capstone project is to further divide the **_train.c
 The dataset in the **_train.csv_** file is composed of 1,503,423 ads and 18 columns. 11 columns have complete records (zero nulls), while 7 columns have at least one null value. Three columns are of type **_float64_**, one column is of type **_int64_**, and the remaining columns are of type **__object__**.
 
 Here are the first 5 ads of the dataset (broken down into two images due to space limitations):  
-![dataset_head_1]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dataset_head_1.png?raw=true)
+![dataset_head_1](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dataset_head_1.png?raw=true)
 
 The columns hold different ad characteristics that range from numerical data (e.g. **_price_**, **_image_top_1_**) to text objects (e.g. **_title_**, **_description_**). The text objects are expressed in the Russian language.
 
@@ -63,7 +63,7 @@ Note that the dataset is augmented by images shown in the ads (the **_image_** c
 
 #### **Distribution of the dependent variable**
 Key to this problem is to understand the distribution of **_deal_probability_**:  
-![dealprobability_hist]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_hist.png?raw=true)
+![dealprobability_hist](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_hist.png?raw=true)
 
 Note that the majority of the records have a deal probability of zero. In fact, 974,618 records (or 64.83% of the data) has a deal probability of zero.
 
@@ -73,7 +73,7 @@ Note that the majority of the records have a deal probability of zero. In fact, 
 
 The ads are fairly diversified across regions with the largest concentration at 9.4% in the Krasnodar region. The pie chart below has more detail:
 
-![region_breakdown]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/region_breakdown.png?raw=true)
+![region_breakdown](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/region_breakdown.png?raw=true)
 
 In the **_EDA.ipynb_** file, a table with statistics on **_deal_probability_** per region is shown (it is not presented here due to space limitations). In all of the regions, more than 50% of deal probabilities are zero. Furthermore, the maximum 75th percentile across regions is 20%, which is a fairly low probability. Looking at the numbers it seems that a lot of deals do not go through completion. At the region level, the average deal probability is within a somewhat compressed range (12.04% to 15.59%).
 
@@ -86,7 +86,7 @@ Given the widespread distribution of ads per cities across 1733 cities, it is mo
 
 Ads are concentrated in the *Personal things* category, with about 46% of all ads, as the following pie chart shows:
 
-![parentcategory_breakdown]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/parentcategory_breakdown.png?raw=true)
+![parentcategory_breakdown](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/parentcategory_breakdown.png?raw=true)
 
 The following table will show that a more interesting picture emerges from looking at **_deal_probability_** through the **_parent_category_name_** column:
 
@@ -95,7 +95,7 @@ The following table will show that a more interesting picture emerges from looki
 * The intermediate parent categories (in terms of deal probability) are concentrated in a fairly narrow range (11.10% to 26.33%).
 * The **_parent_category_name_** feature has some potential in separating high vs. low deal probability ads.
 
-![dealprobability_parentcategory]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_parentcategory.png?raw=true)
+![dealprobability_parentcategory](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_parentcategory.png?raw=true)
 
 ##### **Category**
 
@@ -108,7 +108,7 @@ The **_category_name_** feature allows for a more detailed dive on the **_parent
 
 The distribution of ads per **_activation_date_** is very close to an equal weight (1/unique dates), with the exception of the latest 7 days in the dataset (from 2017-03-29 onwards) where a low number of ads are present.
 
-![date_breakdown]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/date_breakdown.png?raw=true)
+![date_breakdown](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/date_breakdown.png?raw=true)
 
 Even though there are days where **_deal_probability_** is extremely high, it occurs in situations where sample size is very low. A weekday vs. weekend feature might be thought of as something that would differentiate deal probability across activation dates, but it would not be a very robust rule to look at (e.g. 2017-04-01 had an average 80.32% deal probability but only 3 deals).
 
@@ -120,25 +120,25 @@ Surprisingly, the average **_deal_probability_** of the *Private* user type is t
 
 It is also interesting to note that the *Shop* category type has a low average **_deal_probability_** (6.28%). This might be explained by many items sold by *Private* user types being second hand, and hence, having a lower price relative to the *Shop* user price.
 
-![dealprobability_user]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_user.png?raw=true)
+![dealprobability_user](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/dealprobability_user.png?raw=true)
 
 #### **Data breakdown across continuous variables**
 
 As the following table shows, it is interesting to learn that not all ads have a price (price count is different than total number of rows in dataset). The **_price_** variable is heavily influenced by extreme outliers (see the 'max' row and how the standard deviation is much greater than the mean value).
 
 The **_image_top_1_** variable has as many counts as there are ad images, as expected (1,390,836).  
-![continuous_stats]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/continuous_stats.png?raw=true)
+![continuous_stats](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/continuous_stats.png?raw=true)
 
 In order to conveniently represent the **_price_** information in a histogram, a log transformation is made so that the range of values is more compressed:  
-![log_price]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/log_price.png?raw=true)
+![log_price](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/log_price.png?raw=true)
 
 Note how there is one peak in the log of **_price_** distribution, corresponding to the majority of ads having a mid-range price.
 
 The column **_image_top_1_** has a clear concentration of ads at lower values:  
-![imagetop1_hist]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/imagetop1_hist.png?raw=true)
+![imagetop1_hist](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/imagetop1_hist.png?raw=true)
 
 Finally, the **_item_seq_number_** variable is also characterized by a large concentration of values in the lower region:  
-![itemseqnumber_hist]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/itemseqnumber_hist.png?raw=true)
+![itemseqnumber_hist](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/itemseqnumber_hist.png?raw=true)
 
 #### **Behavior of **_deal_probability_** across continuous variables**
 
@@ -156,7 +156,7 @@ However, it is interesting to note three characteristics:
 
 The only noteworthy aspect of the linear correlations is that the **_image_top_1_** variable has the largest postive correlation with **_deal_probability_** (0.21). This variable might be a quantitative metric of image quality, as the better the image quality, the higher the likelyhood that a deal occurs.
 
-![corr]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/corr.png?raw=true)
+![corr](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/corr.png?raw=true)
 
 ### **Algorithms and Techniques**
 
@@ -186,16 +186,16 @@ The benchmark models were developed by selecting the most intuitively significan
 **Classification-based benchmark**: For each item category, compute whether the price of a specific ad is above or below the **_category_name_** mean. If it is equal or above, then the predicted label is "Unlikely", if it is below the **_category_name_** mean, then the predicted label is "Likely". Notice that it is important to condition by **_category_name_**, otherwise big ticket items like cars would be systematically flagged as "Unlikely", even though they could be excellent deals.
 
 The Jupyter Notebook named **_Model Development.ipynb_** has a section that handles the benchmark construction for the supervised classification problem:  
-![bench_class_code]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_class_code.png?raw=true)
+![bench_class_code](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_class_code.png?raw=true)
 
 The classification benchmark rule achieves an F1-Score of 0.21 on the test dataset. Below is the classification report:
 
-![bench_class_report]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_class_report.png?raw=true)
+![bench_class_report](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_class_report.png?raw=true)
 
 **Regression-based benchmark**: A linear regression with **_price_** as the independent variable and **_deal_probability_** as the dependent variable. The parameters of the model are going to be estimated across the full dataset to predict **_deal_probability_**.
 
 The Jupyter Notebook named **_Model Development.ipynb_** has a section that handles the benchmark construction for the supervised regression problem:  
-![bench_reg_code]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_reg_code.png?raw=true)
+![bench_reg_code](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/bench_reg_code.png?raw=true)
 
 The regression benchmark model achieves a root mean squared error of 0.263 in the test dataset.
 
@@ -271,16 +271,16 @@ The Jupyter Notebook file named **_Model Development.ipynb_** aggregates the rel
 
 The dataset was split into a training and testing subsets. The size of the training set is 702,477, and the size of the testing dataset is 468,319. This was made such that the testing dataset represents around 40% of the total ads in the dataset.
 
-![code_train_test_split]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_train_test_split.png?raw=true)
+![code_train_test_split](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_train_test_split.png?raw=true)
 
 #### **Model Comparison with 10-fold cross validation**
 
 For each type of approach (classification vs. regression) a 10-fold cross validation was done on the training dataset for each model and the performance metric (F1-Score and RMSE) was recorded across the 10 folds.
 
 #### **Supervised Classification Implementation**  
-![code_class_crossval]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_class_crossval.png?raw=true)
+![code_class_crossval](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_class_crossval.png?raw=true)
 #### **Supervised Regression Implementation**  
-![code_reg_crossval]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_reg_crossval.png?raw=true)
+![code_reg_crossval](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/code_reg_crossval.png?raw=true)
 
 Note that in the case of supervised regression, there were situations where the default hyper-parameters were override due to computing performance issues:
 
@@ -308,7 +308,7 @@ The out-of-sample RMSE is 0.236 (vs. 0.243 RMSE for the model with default learn
 ### **Model Evaluation and Validation**
 
 #### **Supervised Classification**  
-![class_crossval]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/class_crossval.png?raw=true)
+![class_crossval](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/class_crossval.png?raw=true)
 
 Interestingly, it is the simpler model (Gaussian Naive Bayes) that performs the best across the 10 folds.
 
@@ -319,7 +319,7 @@ Logistic Regression is the worst model with a mean F1-Score of 0.02.
 In terms of out-of-sample performance, Gaussian Naive Bayes achieves a F1-Score of 0.35, which is in line with results seen in the cross validation exercise. This is a robust model that is fast and easy to train. Sometimes, complexity does not work, as in this case.
 
 #### **Supervised Regression**  
-![reg_crossval]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/reg_crossval.png?raw=true)
+![reg_crossval](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/reg_crossval.png?raw=true)
 
 The model that achieves the lowest average RMSE (0.242) across the 10 folds is the Gradient Boosting Regressor.
 
@@ -348,7 +348,7 @@ The best model across the 10 folds is the Gradient Boosting Regressor which aver
 #### **Class imbalance in Supervised Classification**
 
 Looking at the confusion matrix of the Supervised Classification solution, it is clear that due to the target imbalance (411,497 Unlikely deals and 56,822 Likely deals), the Gaussian Naive Bayes achieves a higher recall and precision values for Unlikely vs. the Likely labels:  
-![confusion_matrix_1]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/confusion_matrix_1.png?raw=true)
+![confusion_matrix_1](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/confusion_matrix_1.png?raw=true)
 
 In other words, out of 468,319 records in the test dataset, 411,497 have *deal_probability* below 50% (*Unlikely*). This represents 87.87% of the test dataset.
 
@@ -359,7 +359,7 @@ If a *positive* is considered *Likely* then it becomes clear that the Gaussian N
 #### **Feature Importance in Supervised Regression**
 
 An interesting visualization is to analyze feature contribution to the overall decision boundary in the Gradient Boosting Regressor algorithm. Given that the total number of features are 95, the most importance features were considered to be the ones that cumulatively total about 80% of the feature importance metric in *sklearn*:  
-![feature_importance]((https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/feature_importance.png?raw=true)
+![feature_importance](https://github.com/MARALB83/machine_learning_capstone_project/blob/master/images/feature_importance.png?raw=true)
 
 Interesting obsevations from the plot above:
 
