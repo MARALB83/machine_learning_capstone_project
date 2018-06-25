@@ -6,6 +6,14 @@ Mario Albuquerque
 
 May 31th, 2018
 
+## **Summary** 
+
+The subject of the project, which was done individually, was taken from a Kaggle competition named "Avito Demand Prediction Challenge".
+
+The problem is one of determining the demand for an online advertisement given heterogeneous data types (categorical, numerical, text, and image).
+
+The solution was devised in two approaches: a supervised classification model that flagged likely and unlikely deals; and, a supervised regression model that generated a deal probability forecast.
+
 ## **Data Source**
 
 The project used data provided through a Kaggle competition: ["Avito Demand Prediction Challenge"](https://www.kaggle.com/c/avito-demand-prediction). Note that the location of the necessary files are assumed to have a root folder where the Jupyter Notebook Python files are located. There are two data files to be extracted:
